@@ -1,5 +1,5 @@
 class ImportHolmes < Formula
-  version "0.1.0"
+  version "v0.1.0"
   desc "CLI tool to inspect Javascript/Typescript project imports"
   homepage "https://github.com/pmqueiroz/import-holmes"
   sha256 "da39a3ee5e6b4b0d3255bfef95601890afd80709"
