@@ -6,7 +6,7 @@ permissions: write-all
 
 jobs:
   cd:
-    if: ${{ github.event.client_payload.version && github.event.client_payload.macos_sha && github.event.client_payload.linux_sha }}
+    if: ${{ github.event.client_payload.version }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -15,23 +15,38 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.1'
+      - name: Fetch macOS and Linux SHA values
+        id: fetch_sha
+        run: |
+            version="${{ github.event.client_payload.version }}"
+            repo="https://github.com/pmqueiroz/${{ github.event.action }}/releases/download/$version"
+        
+            curl -L -o macos_sha.txt "$repo/import-holmes-$version-x86_64-apple-darwin.tar.gz.sha256"
+            curl -L -o linux_sha.txt "$repo/import-holmes-$version-x86_64-unknown-linux-gnu.tar.gz.sha256"
+        
+            macos_sha=$(awk '{print $1}' macos_sha.txt)
+            linux_sha=$(awk '{print $1}' linux_sha.txt)
+        
+            echo "macos_sha=$macos_sha" >> $GITHUB_OUTPUT
+            echo "linux_sha=$linux_sha" >> $GITHUB_OUTPUT
+            rm -rf macos_sha.txt linux_sha.txt
       - run: |
           ruby -e "
             template = File.read('${{ github.event.action }}.template')
             output = template
               .gsub('{{version}}', '${{ github.event.client_payload.version }}')
-              .gsub('{{macos_sha}}', '${{ github.event.client_payload.macos_sha }}')
-              .gsub('{{linux_sha}}', '${{ github.event.client_payload.linux_sha }}')
+              .gsub('{{macos_sha}}', '${{ steps.fetch_sha.outputs.macos_sha }}')
+              .gsub('{{linux_sha}}', '${{ steps.fetch_sha.outputs.macos_sha }}')
             File.write('${{ github.event.action }}.rb', output)
           "
-          - name: Commit files
-      - run: |
+      - name: Commit files
+        run: |
           git config --local user.email "pedroqueiroz593@gmail.com"
           git config --local user.name "pmqueiroz"
-          git commit -a -m "update install"
+          git commit -a -m "feat: update ${{ github.event.action }} to ${{ github.event.client_payload.version }}"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-          branch: release
+          branch: main
           force: true
     
