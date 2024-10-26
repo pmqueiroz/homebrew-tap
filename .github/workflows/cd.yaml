@@ -1,0 +1,37 @@
+on:
+  repository_dispatch:
+    types: [import_holmes]
+  
+permissions: write-all
+
+jobs:
+  cd:
+    if: ${{ github.event.client_payload.version && github.event.client_payload.macos_sha && github.event.client_payload.linux_sha }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'
+      - run: |
+          ruby -e "
+            template = File.read('${{ github.event.action }}.template')
+            output = template
+              .gsub('{{version}}', '${{ github.event.client_payload.version }}')
+              .gsub('{{macos_sha}}', '${{ github.event.client_payload.macos_sha }}')
+              .gsub('{{linux_sha}}', '${{ github.event.client_payload.linux_sha }}')
+            File.write('${{ github.event.action }}.rb', output)
+          "
+          - name: Commit files
+      - run: |
+          git config --local user.email "pedroqueiroz593@gmail.com"
+          git config --local user.name "pmqueiroz"
+          git commit -a -m "update install"
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          branch: release
+          force: true
+    
