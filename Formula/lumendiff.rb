@@ -1,25 +1,25 @@
 class Lumendiff < Formula
   desc "High-performance visual regression testing tool"
   homepage "https://github.com/pmqueiroz/lumen-diff"
-  version "0.1.0"
+  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.1.0/lumendiff-aarch64-apple-darwin.tar.xz"
-      sha256 "632f5655cd7334f9009e4a7c06aa5105f6a01bfe13b8bbe8658f2c49abf2eff5"
+      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.2.0/lumendiff-aarch64-apple-darwin.tar.xz"
+      sha256 "90d25be4e812c1e21519027d3337f17b19314fb56f51f30a07b94d354d6b1393"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.1.0/lumendiff-x86_64-apple-darwin.tar.xz"
-      sha256 "dcf21559ab1bb91a9a3323b6a66ef0ccc0ad59fb44d47bc920fda1b39c6d9b64"
+      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.2.0/lumendiff-x86_64-apple-darwin.tar.xz"
+      sha256 "25031703134ad0233a4b508a611d327c7296898962786ef66d6dfde2564bd339"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.1.0/lumendiff-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "db1b889b26fcd5bbb5e5b8ad547cf09c59557315da16a5f6092a825fb600d569"
+      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.2.0/lumendiff-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "c88e30915c9296129d80ed1c7ff3887beb89e63c4bb4a190b48588342d911739"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.1.0/lumendiff-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "78706d168902f9de5c94dcd04469d29cf52bcb8b956c5ed1adcd3110cf96607a"
+      url "https://github.com/pmqueiroz/lumen-diff/releases/download/v0.2.0/lumendiff-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "16c600d196d76fbac76d6235d6857e886f393856c1ab5b983eea092e22ece8f8"
     end
   end
   license "MIT"
