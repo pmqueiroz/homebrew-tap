@@ -1,5 +1,5 @@
 cask "nova" do
-  version "0.10.0"
+  version "0.10.1"
 
   on_intel do
     url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/"
@@ -7,8 +7,8 @@ cask "nova" do
   end
 
   on_arm do
-    url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.10.0_aarch64.dmg"
-    sha256 "e780a58ffbeb6bfa00a23933a4a02b379680f19c6fb49499b7743aa29c36bd3b"
+    url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.10.1_aarch64.dmg"
+    sha256 "aa9c751695656a43db7826eb706cc01bfcd77c949a2f5974fe1e064bbf26732b"
   end
 
   name "Nova"
