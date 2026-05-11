@@ -1,5 +1,5 @@
-cask "nova" do
-  version "0.14.0"
+ cask "nova" do
+   version "0.15.2"
 
   on_intel do
     url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/"
@@ -7,13 +7,16 @@ cask "nova" do
   end
 
   on_arm do
-    url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.14.0_aarch64.dmg"
-    sha256 "859d38d5eaac8e030e74844b39c50edf5d1d19770133993c7430f8b4a473a3eb"
+    url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.15.2_aarch64.dmg"
+    sha256 "dc78c4de4ed1c8d8c56df045224812bd41625b82aee2914c2bd653e09dbad6c9"
   end
 
   name "Nova"
   desc "A GPU-accelerated terminal emulator"
-  homepage "https://github.com/pmqueiroz/nova"
+   homepage "https://github.com/pmqueiroz/nova"
 
-  app "Nova.app"
-end
+   app "Nova.app"
+
+   binary "#{appdir}/Nova.app/Contents/MacOS/nova", target: "nova"
+ end
+ CASK
