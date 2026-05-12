@@ -8,7 +8,7 @@ cask "nova" do
 
   on_arm do
     url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.18.3_aarch64.dmg"
-    sha256 "82fd990fd8bf36c61a7ec899d0c9ade9f4493f0d60484dbe02684dcd10804b51"
+    sha256 "b17185a29c1e293664ff249524e5046ac1c75257fd6f4379d8a38434343ddaf9"
   end
 
   name "Nova"
