@@ -1,11 +1,11 @@
 class Nova < Formula
   desc "A GPU-accelerated terminal emulator"
   homepage "https://github.com/pmqueiroz/nova"
-  version "0.18.3"
+  version "0.19.0"
 
   on_linux do
-    url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.18.3_x86_64.AppImage"
-    sha256 "6cafd2c57c49d20473934591aea0583d9ced9c1fd9fdb3a512fe412ef77efa7c"
+    url "https://github.com/pmqueiroz/nova/releases/download/v#{version}/nova_0.19.0_x86_64.AppImage"
+    sha256 "119fc7c6bdb2ccbd82f371be57d6b554b6de276473e6cae60c9fd8a4e745a4c5"
   end
 
   def install
